@@ -15,6 +15,7 @@ const schema = new Schema(
       ref: "questions",
     },
     createdAt: { type: Date },
+    topic: { type: Schema.Types.String },
   },
   {
     collection: "tests",

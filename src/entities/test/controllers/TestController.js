@@ -10,12 +10,12 @@ async function postTest(req, res) {
 
   schemasValidation(createTestSchema, body);
 
-  const { title, questions, description } = body;
+  const { title, questions, description, topic } = body;
 
   const insertedQuestions = await insertManyQuestions(questions);
 
   const insertedTest = await TestModel.insertMany([
-    { title, description, questions: insertedQuestions },
+    { title, description, questions: insertedQuestions, topic },
   ]);
 
   logger.info("TestController.postTest finished");
@@ -35,17 +35,20 @@ async function getTestById(req, res) {
 }
 
 async function getAllTests(req, res) {
-  const { query, logger } = req;
+  const { logger } = req;
   logger.info("TestController.getTest starts");
 
   const tests = await TestModel.find({});
 
-  const response = tests.map(({ title, questions, description, _id }) => ({
-    id: _id,
-    title,
-    total: questions.length,
-    description,
-  }));
+  const response = tests.map(
+    ({ title, questions, description, _id, topic }) => ({
+      id: _id,
+      title,
+      total: questions.length,
+      description,
+      topic,
+    })
+  );
 
   logger.info("TestController.getTest finished");
 

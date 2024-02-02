@@ -1,9 +1,10 @@
 module.exports = {
   additionalProperties: false,
   type: "object",
-  required: ["title", "questions", "description"],
+  required: ["title", "questions", "description", "topic"],
   properties: {
     title: { type: "string" },
+    topic: { type: "string" },
     description: { type: "string" },
     questions: {
       type: "array",

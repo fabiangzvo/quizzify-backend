@@ -1,4 +1,5 @@
 const ResumeModel = require("@resume/models/ResumeModel");
+const TestModel = require("@test/models/TestModel");
 const { schemasValidation } = require("@utilities/http/SchemasValidator");
 
 const createResumeSchema = require("../schemas/CreateResume");
@@ -8,14 +9,31 @@ async function postResume(req, res) {
   logger.info("ResumeController.postResume starts");
 
   schemasValidation(createResumeSchema, body);
-  const { time, correctAnswers, rating, test, presentedAt } = body;
+  const { time, correctAnswers, rating, test, presentedAt, answers } = body;
 
-  const insertedTest = await ResumeModel.insertMany([
-    { time, correctAnswers, rating, test, presentedAt },
+  const insertedResume = await ResumeModel.insertMany([
+    { time, correctAnswers, rating, test, presentedAt, answers },
   ]);
 
+  const resume = await insertedResume.reduce(
+    async (
+      accum,
+      { time, correctAnswers, rating, test: testId, presentedAt, answers }
+    ) => {
+      const accumulator = await accum;
+
+      const test = await TestModel.findById(testId);
+
+      return [
+        ...accumulator,
+        { time, correctAnswers, rating, presentedAt, answers, test },
+      ];
+    },
+    Promise.resolve([])
+  );
+
   logger.info("ResumeController.postResume finished");
-  return res.json(insertedTest);
+  return res.json(resume);
 }
 
 async function getResumeById(req, res) {

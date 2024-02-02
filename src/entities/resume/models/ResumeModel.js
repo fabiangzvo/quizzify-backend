@@ -2,6 +2,17 @@ const { Schema } = require("mongoose");
 
 const { db } = require("@configs/DatabaseConfig");
 
+const answersSchema = new Schema(
+  {
+    questionId: Schema.Types.String,
+    optionId: Schema.Types.String,
+    isCorrect: Schema.Types.Boolean,
+  },
+  {
+    timestamps: true,
+  }
+);
+
 const schema = new Schema(
   {
     time: {
@@ -15,6 +26,15 @@ const schema = new Schema(
     },
     test: { type: Schema.Types.ObjectId, ref: "tests" },
     presentedAt: { type: Date },
+    answers: {
+      type: [
+        {
+          questionId: Schema.Types.String,
+          optionId: Schema.Types.String,
+          isCorrect: Schema.Types.Boolean,
+        },
+      ],
+    },
   },
   {
     collection: "resume",
