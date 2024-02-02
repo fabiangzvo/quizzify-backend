@@ -8,7 +8,8 @@ const schema = new Schema(
       type: Schema.Types.String,
     },
     isCorrect: {
-      types: Schema.Types.Boolean,
+      type: Boolean,
+      default: true,
     },
     createdAt: { type: Date },
   },
