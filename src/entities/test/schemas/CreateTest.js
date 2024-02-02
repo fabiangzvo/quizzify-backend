@@ -8,14 +8,14 @@ module.exports = {
     description: { type: "string" },
     questions: {
       type: "array",
-      minItems: 2,
+      minItems: 10,
       items: {
         type: "object",
         properties: {
           description: { type: "string" },
           options: {
             type: "array",
-            minItems: 2,
+            minItems: 4,
             items: {
               type: "object",
               required: ["description", "isCorrect"],
