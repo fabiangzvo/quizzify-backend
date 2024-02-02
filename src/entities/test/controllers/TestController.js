@@ -23,10 +23,10 @@ async function postTest(req, res) {
 }
 
 async function getTestById(req, res) {
-  const { query, logger } = req;
+  const { params, logger } = req;
   logger.info("TestController.getTest starts");
 
-  const { testId } = query;
+  const { testId } = params;
 
   const test = await TestModel.findById(testId);
 

@@ -59,4 +59,6 @@ const db = createConnectionStr(
   process.env.DATABASE_NAME
 );
 
+//db.set("debug", true);
+
 module.exports = { db, createConnectionStr };
