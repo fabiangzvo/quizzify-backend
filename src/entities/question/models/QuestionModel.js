@@ -9,7 +9,7 @@ const schema = new Schema(
     },
     options: {
       type: [Schema.Types.ObjectId],
-      ref: "questions",
+      ref: "options",
     },
     createdAt: { type: Date },
   },
