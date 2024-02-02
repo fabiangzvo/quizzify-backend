@@ -1,4 +1,4 @@
-const { OptionModel } = require("../models/OptionModel");
+const OptionModel = require("../models/OptionModel");
 const { getLogger } = require("log4js");
 
 const logger = getLogger();

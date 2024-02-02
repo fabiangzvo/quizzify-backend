@@ -8,7 +8,7 @@ const {
   NotFoundError,
   ConflictError,
 } = require("@utilities/http/HttpErrors");
-const { UserModel } = require("@user/models/UserModel");
+const UserModel = require("@user/models/UserModel");
 const SignUpSchema = require("@user/schemas/SignUp");
 
 const { createAccessToken } = require("../services/UserService");

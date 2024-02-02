@@ -1,4 +1,4 @@
-const { TestModel } = require("@test/models/TestModel");
+const TestModel = require("@test/models/TestModel");
 const { schemasValidation } = require("@utilities/http/SchemasValidator");
 const { insertManyQuestions } = require("@question/services/QuestionService");
 

@@ -43,4 +43,4 @@ function schemasValidation(schema, data) {
   });
 }
 
-module.exports = schemasValidation;
+module.exports = { schemasValidation };

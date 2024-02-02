@@ -1,4 +1,4 @@
-const { ResumeModel } = require("@resume/models/ResumeModel");
+const ResumeModel = require("@resume/models/ResumeModel");
 const { schemasValidation } = require("@utilities/http/SchemasValidator");
 
 const createResumeSchema = require("../schemas/CreateResume");
