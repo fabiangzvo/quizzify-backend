@@ -1,9 +1,9 @@
 module.exports = {
   additionalProperties: false,
   type: "object",
-  required: ["userName", "password"],
+  required: ["email", "password"],
   properties: {
-    userName: { type: "string" },
+    email: { type: "string" },
     password: { type: "string" },
   },
 };
