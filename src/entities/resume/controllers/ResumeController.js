@@ -3,30 +3,41 @@ const TestModel = require("@test/models/TestModel");
 const { schemasValidation } = require("@utilities/http/SchemasValidator");
 
 const createResumeSchema = require("../schemas/CreateResume");
+const getAllResumesSchema = require("../schemas/getAllResumes");
 
 async function postResume(req, res) {
   const { body, logger } = req;
   logger.info("ResumeController.postResume starts");
 
   schemasValidation(createResumeSchema, body);
-  const { time, correctAnswers, rating, test, presentedAt, answers } = body;
+  const { time, correctAnswers, rating, test, presentedAt, answers, user } =
+    body;
 
   const insertedResume = await ResumeModel.insertMany([
-    { time, correctAnswers, rating, test, presentedAt, answers },
+    { time, correctAnswers, rating, test, presentedAt, answers, user },
   ]);
 
   const resume = await insertedResume.reduce(
     async (
       accum,
-      { time, correctAnswers, rating, test: testId, presentedAt, answers }
+      { time, correctAnswers, rating, test: testId, presentedAt, answers, _id }
     ) => {
       const accumulator = await accum;
 
       const test = await TestModel.findById(testId);
 
+      console.log(_id);
       return [
         ...accumulator,
-        { time, correctAnswers, rating, presentedAt, answers, test },
+        {
+          time,
+          correctAnswers,
+          rating,
+          presentedAt,
+          answers,
+          test,
+          _id: _id,
+        },
       ];
     },
     Promise.resolve([])
@@ -49,10 +60,14 @@ async function getResumeById(req, res) {
 }
 
 async function getAllResumes(req, res) {
-  const { logger } = req;
+  const { logger, query } = req;
   logger.info("ResumeController.getAllResumes starts");
 
-  const resumes = await ResumeModel.find({});
+  schemasValidation(getAllResumesSchema, query);
+
+  const resumes = await ResumeModel.find({ user: query.userId }).populate(
+    "test"
+  );
 
   logger.info("ResumeController.getAllResumes finished");
 

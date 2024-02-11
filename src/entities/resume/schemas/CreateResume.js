@@ -7,6 +7,7 @@ module.exports = {
     correctAnswers: { type: "number" },
     rating: { type: "number" },
     test: { type: "string" },
+    user: { type: "string" },
     presentedAt: { type: "string", format: "date-time" },
     answers: {
       type: "array",

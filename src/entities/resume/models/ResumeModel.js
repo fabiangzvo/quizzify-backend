@@ -14,6 +14,7 @@ const schema = new Schema(
       type: Schema.Types.Number,
     },
     test: { type: Schema.Types.ObjectId, ref: "tests" },
+    user:{ type: Schema.Types.ObjectId, ref: "users" },
     presentedAt: { type: Date },
     answers: {
       type: [

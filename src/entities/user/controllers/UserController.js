@@ -86,4 +86,18 @@ async function signIn(req, res) {
   return res.json(accessResponse);
 }
 
-module.exports = { signIn, signUp };
+async function getUserProfile(req, res) {
+  const {
+    logger,
+    user: { _id },
+  } = req;
+  logger.info("UserController.getUserProfile starts");
+
+  const user = await UserModel.findById(_id);
+
+  logger.info("UserController.getUserProfile finished");
+
+  res.json(user);
+}
+
+module.exports = { signIn, signUp, getUserProfile };
