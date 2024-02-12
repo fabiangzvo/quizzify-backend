@@ -1,6 +1,6 @@
 const { getLogger } = require("log4js");
 
-const { insertManyOptions } = require("@option/services/OptionService");
+const { insertManyOptions } = require("../../option/services/OptionService");
 
 const QuestionModel = require("../models/QuestionModel");
 

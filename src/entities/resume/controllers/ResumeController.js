@@ -1,6 +1,8 @@
-const ResumeModel = require("@resume/models/ResumeModel");
-const TestModel = require("@test/models/TestModel");
-const { schemasValidation } = require("@utilities/http/SchemasValidator");
+const ResumeModel = require("../../resume/models/ResumeModel");
+const TestModel = require("../../test/models/TestModel");
+const {
+  schemasValidation,
+} = require("../../../utilities/http/SchemasValidator");
 
 const createResumeSchema = require("../schemas/CreateResume");
 const getAllResumesSchema = require("../schemas/getAllResumes");

@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const { BaseRequestHandler } = require("@utilities/http/HttpUtils");
+const { BaseRequestHandler } = require("../../utilities/http/HttpUtils");
 const { getQuestionById } = require("./controllers/QuestionController");
 
 const testsRoutes = Router();

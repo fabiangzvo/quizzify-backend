@@ -1,6 +1,6 @@
-const { Schema, Types, Document } = require("mongoose");
+const { Schema } = require("mongoose");
 
-const { db } = require("@configs/DatabaseConfig");
+const { db } = require("../../../configs/DatabaseConfig");
 
 const schema = new Schema(
   {

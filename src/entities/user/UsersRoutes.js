@@ -1,7 +1,7 @@
 const { Router } = require("express");
 
-const { validateAccess } = require("@middlewares/AuthMiddlewares");
-const { BaseRequestHandler } = require("@utilities/http/HttpUtils");
+const { validateAccess } = require("../../middlewares/AuthMiddlewares");
+const { BaseRequestHandler } = require("../../utilities/http/HttpUtils");
 const {
   signUp,
   signIn,

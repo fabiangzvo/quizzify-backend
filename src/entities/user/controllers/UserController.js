@@ -1,15 +1,16 @@
-const { Response } = require("express");
 const { hash, compare } = require("bcrypt");
 const { getLogger } = require("log4js");
 
-const { schemasValidation } = require("@utilities/http/SchemasValidator");
+const {
+  schemasValidation,
+} = require("../../../utilities/http/SchemasValidator");
 const {
   BadRequestError,
   NotFoundError,
   ConflictError,
-} = require("@utilities/http/HttpErrors");
-const UserModel = require("@user/models/UserModel");
-const SignUpSchema = require("@user/schemas/SignUp");
+} = require("../../../utilities/http/HttpErrors");
+const UserModel = require("../../user/models/UserModel");
+const SignUpSchema = require("../../user/schemas/SignUp");
 
 const { createAccessToken } = require("../services/UserService");
 

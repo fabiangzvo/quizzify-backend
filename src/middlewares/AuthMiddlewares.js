@@ -3,7 +3,7 @@ const { verify } = require("jsonwebtoken");
 const {
   UnauthorizedError,
   BadRequestError,
-} = require("@utilities/http/HttpErrors");
+} = require("../utilities/http/HttpErrors");
 
 function validateAccess(req, _res, next) {
   const {
